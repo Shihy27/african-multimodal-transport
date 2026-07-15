@@ -1,0 +1,28 @@
+# Python and Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+
+# Raw data and generated outputs
+data/
+outputs/
+*.osm.pbf
+*.pbf
+*.gpkg
+*.geojson
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.qix
+*.tif
+*.tiff
+*.xlsx
+*.xls
+
+# Local GIS and editor files
+*.lock
+.vscode/
+.idea/

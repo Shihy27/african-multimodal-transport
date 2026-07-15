@@ -1,0 +1,15 @@
+# Public Python dependencies for notebooks 01 and 05--11.
+# Install ArcPy separately through ArcGIS Pro for notebooks 02--04.
+contextily>=1.6
+geopandas>=0.14
+jupyterlab>=4.0
+linearmodels>=6.0
+matplotlib>=3.8
+numpy>=1.26
+openpyxl>=3.1
+osmium>=3.7
+pandas>=2.1
+scikit-learn>=1.4
+scipy>=1.11
+shapely>=2.0
+statsmodels>=0.14
