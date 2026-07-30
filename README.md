@@ -37,10 +37,10 @@ The repository contains code only. Download data from the original providers and
 
 | Dataset                       | Use in this study                                                                                          | Source                                                                            |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| OpenStreetMap Africa extracts | Roads, paved highways, railways, railway stations, ports and aeroways                                      | [Geofabrik](https://download.geofabrik.de/africa.html)                            |
+| OpenStreetMap Africa extracts | Roads, paved highways, railways, railway stations, ports, and aeroways                                      | [Geofabrik](https://download.geofabrik.de/africa.html)                            |
 | Administrative boundaries     | Country and subregion spatial layers                                                                       | [Natural Earth](https://www.naturalearthdata.com/)                                |
-| African macroeconomic data    | GDP, GDP per capita, population, exchange rates, price indices and household final consumption expenditure | [African Development Bank data portal](https://dataportal.opendataforafrica.org/) |
-| Sectoral value added          | Agriculture, industry and services                                                                         | [World Bank Open Data](https://data.worldbank.org/)                               |
+| African macroeconomic data    | GDP, GDP per capita, population, exchange rates, price indices, and household final consumption expenditure | [African Development Bank data portal](https://dataportal.opendataforafrica.org/) |
+| Sectoral value added          | Agriculture, industry, and services                                                                         | [World Bank Open Data](https://data.worldbank.org/)                               |
 | Wealth-distribution data      | Top 1%, top 10% and bottom 50% wealth shares                                                               | [World Inequality Database](https://wid.world/world/)                             |
 
 ## Configuration and execution
@@ -76,13 +76,13 @@ Run the notebooks in this order:
 10. `10_multiscale_transport_economic_effects.ipynb`
 11. `11_transport_welfare_and_inequality.ipynb`
 
-Execute each notebook from top to bottom. Historical notebook outputs have been removed intentionally so that figures, tables and diagnostics are regenerated in the local environment. The analysis notebooks use the processed country-year infrastructure table produced by the preprocessing workflow together with the external socioeconomic data listed above.
+Execute each notebook from top to bottom. Historical notebook outputs have been removed intentionally so that figures, tables, and diagnostics are regenerated in the local environment. The analysis notebooks use the processed country-year infrastructure table produced by the preprocessing workflow together with the external socioeconomic data listed above.
 
 ## Reproducibility notes
 
 - Keep raw data outside version control. The supplied `.gitignore` excludes common large geospatial and tabular formats.
-- Use the same input extracts, country-name harmonization and analysis period to reproduce the reported estimates.
-- The model notebooks implement system-GMM, PSM-DID/event-study and multiscale analyses described in the manuscript Methods and Supplementary Information.
+- Use the same input extracts, country-name harmonization, and analysis period to reproduce the reported estimates.
+- The model notebooks implement system-GMM, PSM-DID/event-study, and multiscale analyses described in the manuscript Methods and Supplementary Information.
 
 ## Code availability and citation
 
