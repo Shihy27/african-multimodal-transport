@@ -1,6 +1,6 @@
 # Uneven multimodal transport expansion reshapes regional economic divergence in Africa
 
-This repository contains the Python notebooks used for the analyses in *Uneven multimodal transport expansion reshapes regional economic divergence in Africa*. The study evaluates associations between the expansion of roads, paved highways, railways, railway stations, ports and aeroways and economic growth, sectoral development, welfare and wealth inequality across African countries from 2015 to 2024.
+This repository contains the Python notebooks used for the analyses in *Uneven multimodal transport expansion reshapes regional economic divergence in Africa*. The study evaluates associations between the expansion of roads, paved highways, railways, railway stations, ports, and aeroway facilities and economic growth, sectoral development, individual welfare, and wealth inequality across African countries from 2015 to 2024.
 
 ## Repository contents
 
