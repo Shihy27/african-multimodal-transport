@@ -1,23 +1,23 @@
 # Uneven multimodal transport expansion reshapes regional economic divergence in Africa
 
-This repository contains the Python notebooks used for the analyses in *Uneven multimodal transport expansion reshapes regional economic divergence in Africa*. The study evaluates associations between the expansion of roads, paved highways, railways, railway stations, ports, and aeroway facilities and economic growth, sectoral development, individual welfare, and wealth inequality across African countries from 2015 to 2024.
+This repository contains the Python notebooks used for the analyses in *Uneven multimodal transport expansion reshapes regional economic divergence in Africa*. The study evaluates associations between the expansion of roads, paved highways, railways, railway stations, ports, and aviation infrastructure and economic growth, sectoral development, individual welfare, and wealth inequality across African countries from 2015 to 2024.
 
 ## Repository contents
 
 
-| Notebook                                            | Purpose                                                                                          |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `01_process_osm_infrastructure.ipynb`               | Extract transport infrastructure layers from OpenStreetMap PBF snapshots.                        |
-| `02_clip_infrastructure_to_africa_arcpy.ipynb`      | Clip annual infrastructure layers to the African study area (ArcPy).                             |
-| `03_project_infrastructure_layers_arcpy.ipynb`      | Project infrastructure layers and calculate length/area attributes (ArcPy).                      |
-| `04_project_administrative_boundaries_arcpy.ipynb`  | Project administrative boundaries and calculate areas (ArcPy).                                   |
-| `05_process_wealth_inequality_data.ipynb`           | Harmonize World Inequality Database records and construct wealth-distribution indicators.        |
-| `06_psm_did_railway_impact.ipynb`                   | Estimate the Addis Ababa-Djibouti railway effect using PSM-DID and event-study checks.           |
-| `07_system_gmm_robustness_checks.ipynb`             | Run dynamic-panel system-GMM robustness analyses.                                                |
-| `08_multimodal_transport_economic_divergence.ipynb` | Produce the main analysis of infrastructure expansion and regional economic divergence.          |
-| `09_mode_specific_sectoral_effects.ipynb`           | Evaluate transport-mode-specific associations with sectoral development.                         |
-| `10_multiscale_transport_economic_effects.ipynb`    | Evaluate temporal and scale-dependent heterogeneity in transport-economic associations.          |
-| `11_transport_welfare_and_inequality.ipynb`         | Evaluate welfare translation, inequality mitigation and scale-adjusted infrastructure residuals. |
+| Notebook                                            | Purpose                                                                                                                                      |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `01_process_osm_infrastructure.ipynb`               | Extract transport infrastructure layers from OpenStreetMap PBF snapshots.                                                                    |
+| `02_clip_infrastructure_to_africa_arcpy.ipynb`      | Clip annual infrastructure layers to the African study area (ArcPy).                                                                         |
+| `03_project_infrastructure_layers_arcpy.ipynb`      | Project infrastructure layers and calculate length/area attributes (ArcPy).                                                                  |
+| `04_project_administrative_boundaries_arcpy.ipynb`  | Project administrative boundaries and calculate areas (ArcPy).                                                                               |
+| `05_process_wealth_inequality_data.ipynb`           | Harmonize World Inequality Database records and construct wealth-distribution indicators.                                                    |
+| `06_psm_did_railway_impact.ipynb`                   | Estimate the Addis Ababa-Djibouti railway effect using PSM-DID and event-study checks.                                                       |
+| `07_system_gmm_robustness_checks.ipynb`             | Run dynamic-panel system-GMM robustness analyses.                                                                                            |
+| `08_multimodal_transport_economic_divergence.ipynb` | Map GDP and six transport infrastructure types, export infrastructure-growth data, and plot growth trends and associations.                  |
+| `09_mode_specific_sectoral_effects.ipynb`           | Map mode-specific sectoral correlations and compare country, regional, and continental growth-rate associations and sector specificity.      |
+| `10_multiscale_transport_economic_effects.ipynb`    | Analyze lagged growth-rate correlations, regional-interaction and nested multiscale models, model diagnostics, and cumulative effects.       |
+| `11_transport_welfare_and_inequality.ipynb`         | Map scale-adjusted infrastructure residuals and assess transport-growth associations with welfare and population-weighted wealth inequality. |
 
 ## Software requirements
 
@@ -35,21 +35,23 @@ The preprocessing notebooks `02`--`04` require ArcPy and therefore an active Arc
 The repository contains code only. Download data from the original providers and comply with their current terms of use before running the notebooks.
 
 
-| Dataset                       | Use in this study                                                                                          | Source                                                                            |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| OpenStreetMap Africa extracts | Roads, paved highways, railways, railway stations, ports, and aeroways                                      | [Geofabrik](https://download.geofabrik.de/africa.html)                            |
-| Administrative boundaries     | Country and subregion spatial layers                                                                       | [Natural Earth](https://www.naturalearthdata.com/)                                |
+| Dataset                       | Use in this study                                                                                           | Source                                                                            |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| OpenStreetMap Africa extracts | Roads, paved highways, railways, railway stations, ports, and aviation infrastructure                       | [Geofabrik](https://download.geofabrik.de/africa.html)                            |
+| Administrative boundaries     | Country and subregion spatial layers                                                                        | [Natural Earth](https://www.naturalearthdata.com/)                                |
 | African macroeconomic data    | GDP, GDP per capita, population, exchange rates, price indices, and household final consumption expenditure | [African Development Bank data portal](https://dataportal.opendataforafrica.org/) |
 | Sectoral value added          | Agriculture, industry, and services                                                                         | [World Bank Open Data](https://data.worldbank.org/)                               |
-| Wealth-distribution data      | Top 1%, top 10% and bottom 50% wealth shares                                                               | [World Inequality Database](https://wid.world/world/)                             |
+| Wealth-distribution data      | Top 1%, top 10% and bottom 50% wealth shares                                                                | [World Inequality Database](https://wid.world/world/)                             |
 
 ## Configuration and execution
 
-The notebooks use English-only local paths. Its layout is:
+The notebooks use English-only local paths. The expected data layout is:
 
 ```text
 E:\Africa_Infrastructure_Data\
 ├── infrastructure\
+│   └── clip_project\
+│       └── <year>\
 ├── boundaries\
 ├── boundaries_project\
 ├── boundaries_project_49\
@@ -60,7 +62,18 @@ E:\Africa_Infrastructure_Data\
 └── wealth_inequality_2015_2024.xlsx
 ```
 
-On another computer, create the same directory layout (or update the path variables near the top of each notebook) and place the downloaded data in the corresponding locations. Figure and table products are written to the repository-relative `outputs/` directory.
+On another computer, create the same directory layout (or update the path variables near the top of each notebook) and place the downloaded data in the corresponding locations. Run notebooks from this repository directory so that relative output paths resolve consistently. Notebook `08` writes intermediate growth tables, normalization parameters, and spatial layers to `outputs/multimodal_transport_economic_divergence/`. Figures are displayed inline; only explicit export calls write files to disk.
+
+### CARTO basemap configuration
+
+Notebooks `08`, `09`, and `11` use the CARTO Positron No Labels basemap through `contextily` and `xyzservices.TileProvider`. They read a basemap key from the `CARTO_BASEMAP_KEY` environment variable, or prompt for it with `getpass` when the variable is absent. Obtain a key from the [CARTO Basemaps key request page](https://carto.com/basemaps/apikey/).
+
+For a Windows PowerShell session, set the variable before starting Jupyter:
+
+```powershell
+$env:CARTO_BASEMAP_KEY = 'YOUR_CARTO_BASEMAP_KEY'
+jupyter lab
+```
 
 Run the notebooks in this order:
 
@@ -75,14 +88,6 @@ Run the notebooks in this order:
 9. `09_mode_specific_sectoral_effects.ipynb`
 10. `10_multiscale_transport_economic_effects.ipynb`
 11. `11_transport_welfare_and_inequality.ipynb`
-
-Execute each notebook from top to bottom. Historical notebook outputs have been removed intentionally so that figures, tables, and diagnostics are regenerated in the local environment. The analysis notebooks use the processed country-year infrastructure table produced by the preprocessing workflow together with the external socioeconomic data listed above.
-
-## Reproducibility notes
-
-- Keep raw data outside version control. The supplied `.gitignore` excludes common large geospatial and tabular formats.
-- Use the same input extracts, country-name harmonization, and analysis period to reproduce the reported estimates.
-- The model notebooks implement system-GMM, PSM-DID/event-study, and multiscale analyses described in the manuscript Methods and Supplementary Information.
 
 ## Code availability and citation
 
